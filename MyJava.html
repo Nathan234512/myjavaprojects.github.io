@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<!-- This is based on DillingerLee's great template here:
+https://github.com/Team-Code/KA_Offline -->
+<html> 
+ <head>
+    <title>Processing.JS inside Webpages: Template</title> 
+    <style>
+     body{
+      border: 5px solid #000000;
+      padding: 10px;
+      height: 2000px;
+      font-family:HP Simplified;
+      background-image:linear-gradient(rgb(0, 32, 107),rgb(71, 70, 71),rgb(0, 0, 0));
+     }
+     .caption{
+      border: 5px outset #000749;
+      margin-top:10px;
+      margin-left: 10px;
+      width: 350px;
+      text-align:center;
+      padding:5px;
+      background:#5E5E5E;
+     }
+     h1{
+      border: 5px outset #000749;
+      text-align:center;
+      padding:5px;
+      margin:auto;
+      background:#5E5E5E;
+     }
+     .Canvas{
+      border: 5px outset #000749;
+      margin-top:10px;
+      margin-left: 10px;
+     }
+     #canvas-1{
+      position:absolute;
+      top: 165px;
+      left: 15px;
+     }
+     #canvas-2{
+      position:absolute;
+      top:585px;
+      left: 15px;
+     }
+     #canvas-3{
+      position:absolute;
+      top:1005px;
+      left:15px;
+     }
+     #canvas-4{
+      position:absolute;
+      top:1425px;
+      left:15px;
+     }
+     #EA{
+      position:absolute;
+      left:435px;
+      top: 165px;
+     }
+     #HP{
+      position:absolute;
+      left:435px;
+      top: 585px;
+     }
+     #FP{
+      position:absolute;
+      left:435px;
+      top: 1005px;
+     }
+     #MP{
+      position:absolute;
+      left:435px;
+      top: 1425px;
+     }
+     #contents{
+      border: 5px outset #000749;
+      text-align:center;
+      background:#5E5E5E;
+      width: 200px;
+      height: 380px;
+      position:fixed;
+      right: 25px;
+      top: 165px;
+     }
+     button{
+      border: 2px outset #000749;
+      width: 150px;
+      margin-top: 10px;
+      background:#3A3A3A;
+      height: 50px;
+     }
+    </style>
+
+
+</head>
+ <body>
+     
+	<!--This draws the Canvas on the webpage -->
+      <div id="title">
+       <h1>My JavaScript Projects</h1>
+      </div>
+      
+      
+      <div id="contents">
+      <h2>Projects</h2>
+      <a href="#canvas-1"><button>Elephant Animation</button></a>
+      <a href="#canvas-2"><button>House Project</button></a>
+      <a href="#canvas-3"><button>Fish Project</button></a>
+      <a href="#canvas-4"><button>Magic 8-Ball</button></a>
+      <a href="#title"><button>Back To Top</button></a>
+      </div>
+      
+      
+      
+      <canvas id="canvas-1" class="Canvas"></canvas>
+      <h2 id="EA" class="caption">Elephant Animation</h2>
+      <canvas id="canvas-2" class="Canvas"></canvas>
+      <h2 id="HP" class="caption">House Project</h2>
+      <canvas id="canvas-3" class="Canvas"></canvas>
+      <h2 id="FP" class="caption">Fish Project</h2>
+      <canvas id="canvas-4" class="Canvas"></canvas>
+      <h2 id="MP" class="caption">Magic 8-Ball</h2>
+      
+ </body>
+ 
+ <!-- Run all the JavaScript stuff -->
+ <!-- Include the processing.js library -->
+ <!-- See https://khanacademy.zendesk.com/hc/en-us/articles/202260404-What-parts-of-ProcessingJS-does-Khan-Academy-support- for differences -->
+ <script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script> 
+
+<!--Ellephant-->
+ <script>
+    var sketchProc = function(processingInstance) {
+     with (processingInstance) {
+        size(400, 400); 
+        frameRate(30);
+        
+        // ProgramCodeGoesHere
+        var bodyX = 200;
+        var bodyY = 220;
+        var bodyW = 121;
+        var faceSize; 
+        background(191, 248, 255);
+        
+        var elephant = function(bodyW, bodyX , bodyY){
+          
+        faceSize = bodyW * 79/121;
+            
+            var faceX = bodyX;
+            var faceY = bodyY - bodyW * 77/200;
+            var leftEarX = faceX - faceSize * 1/2;
+            var leftEarY = faceY - faceSize*19/78; 
+            var rightEarX = faceX + faceSize*1/2;
+            var rightEarY = faceY - faceSize*19/78;
+            
+            var eyeSize = 17;
+            var leftEyeX = faceX - faceSize*15/78;
+            var leftEyeY = faceY - faceSize*11/78;
+            var rightEyeX = faceX + faceSize*15/78;
+            var rightEyeY = faceY - faceSize*11/78;
+            
+            var trunkX = faceX - faceSize*11/78;
+            var trunkY = faceY - faceSize*-14/78;
+            var trunkW = faceSize * 22/78;
+            var trunkH = faceSize * 68/78;
+           
+            stroke(89, 89, 89);
+          
+            fill(120, 120, 119);
+            ellipse(bodyX, bodyY, bodyW, bodyW); // body?
+            
+            ellipse(leftEarX,leftEarY,faceSize * 57/78,faceSize * 90/78);// leftEar
+            ellipse(rightEarX,rightEarY,faceSize * 57/78,faceSize * 90/78);//rightEar
+            
+            //face
+            ellipse(faceX, faceY, faceSize, faceSize); 
+            
+            //eyes
+            fill(0, 0, 0);
+            ellipse(leftEyeX, leftEyeY, faceSize * 15/78,faceSize * 15/78);
+            ellipse(rightEyeX, rightEyeY, faceSize * 15/78,faceSize * 15/78);
+            
+            fill(120, 120, 119);
+            //trunk
+            rect(trunkX,trunkY,trunkW,trunkH);
+        
+            
+           
+        
+        };
+        
+            elephant(120, 200, 220);
+           
+        mousePressed = function() { 
+        
+         elephant(random(50,150), mouseX, mouseY);
+        
+        };
+
+
+    }};
+
+    // Get the canvas that Processing-js will use
+    var canvas = document.getElementById("canvas-1"); 
+    // Pass the function sketchProc (defined in myCode.js) to Processing's constructor.
+    var processingInstance = new Processing(canvas, sketchProc); 
+ </script>
+ <!--house-->
+ <script>
+  var sketchProc = function(processingInstance) {
+     with (processingInstance) {
+        size(400, 400); 
+        frameRate(30);
+        
+        background(219, 255, 255);
+
+        var houseX = 200;
+        var houseY = 200;
+        
+        //window function
+        var windowX = 95;
+        var windowY = 185;
+        var window = function(windowX, windowY) {
+            rect ( windowX, windowY, 75, 75);
+        fill(255, 255, 255);
+        rect ( windowX + 5, windowY + 5,65,65);
+        line(windowX + 37.5, windowY +5, windowX + 37.5, windowY + 70);
+        line(windowX + 5,windowY + 37.5, windowX + 70, windowY + 37.5);
+        };
+        
+        //roof
+        fill(174, 180, 214);
+        triangle(houseX, houseY - 172, houseX + 150, houseY - 50, houseX - 150, houseY - 50);
+        
+        
+        //house
+        fill(82, 36, 2);
+        rect(houseX - 140, houseY -  50, 280, 207);
+        
+        //grass
+        fill(11, 214, 0);
+        rect(-1, 351, 401, 49);
+        
+        //siding
+        for(var o = houseX - 30; o <= 355; o += 20) {
+         line(houseX - 140, o, houseX + 140, o);
+        } 
+        
+        //window loop
+        for (var i = 95; i < 230; i += 133){
+            fill(5, 3, 0);
+            window(i, 185);
+        }
+        
+        //door
+        fill(120, 80, 19);
+        rect(180, 273, 40, 77);
+        
+        //bushes
+        fill(34, 140, 28);
+        for(var j = 60; j <= 155; j += 31) {
+            ellipse(j, 326, 34, 50);
+        } 
+        
+        for(var f = 340; f >= 245; f -= 31) {
+            ellipse(f, 326, 34, 50);
+} 
+        
+     }};
+        
+        // Get the canvas that Processing-js will use
+    var canvas = document.getElementById("canvas-2"); 
+    // Pass the function sketchProc (defined in myCode.js) to Processing's constructor.
+    var processingInstance = new Processing(canvas, sketchProc); 
+ </script>
+ <script>
+  var sketchProc = function(processingInstance) {
+     with (processingInstance) {
+        size(400, 400); 
+        frameRate(30);
+        
+        // ProgramCodeGoesHere
+        background(89, 216, 255);
+        var centerX = 200;
+        var centerY = 100;
+        
+        var drawFish = function (centerX, centerY) {
+        
+        
+        var bodyLength = 118;
+        var bodyHeight = 0.63 * bodyLength;
+        var bodyColor = color(mouseX,mouseY);
+        
+        noStroke();
+        fill(bodyColor);
+        // body
+        ellipse(centerX, centerY, bodyLength, bodyHeight);
+        // tail
+        var tailWidth = bodyLength/4;
+        var tailHeight = bodyHeight/2;
+        triangle(centerX-bodyLength/2, centerY,
+                 centerX-bodyLength/2-tailWidth, centerY-tailHeight,
+                 centerX-bodyLength/2-tailWidth, centerY+tailHeight);
+        // eye
+        fill(33, 33, 33);
+        ellipse(centerX+bodyLength/4, centerY, bodyHeight/5, bodyHeight/5);
+                 
+        
+        
+        };
+        
+        mousePressed = function() {
+            drawFish(mouseX,mouseY);
+            
+        
+        
+        };
+        
+        
+        drawFish(200,200);
+
+
+
+    }};
+
+    // Get the canvas that Processing-js will use
+    var canvas = document.getElementById("canvas-3"); 
+    // Pass the function sketchProc (defined in myCode.js) to Processing's constructor.
+    var processingInstance = new Processing(canvas, sketchProc);
+ </script>
+ <!--Ball-->
+ <script>
+  var sketchProc = function(processingInstance) {
+     with (processingInstance) {
+        size(400, 400); 
+        frameRate(30);
+     
+        
+        var ball = function () {
+        //Elephant
+        var bodyX = 200;
+        var bodyY = 220;
+        var bodyW = 121;
+        var faceSize; 
+        
+        var elephant = function(bodyW, bodyX , bodyY){
+          
+        faceSize = bodyW * 79/121;
+            
+            var faceX = bodyX;
+            var faceY = bodyY - bodyW * 77/200;
+            var leftEarX = faceX - faceSize*1/2;
+            var leftEarY = faceY - faceSize*19/78; 
+            var rightEarX = faceX + faceSize*1/2;
+            var rightEarY = faceY - faceSize*19/78;
+            
+            var eyeSize = 17;
+            var leftEyeX = faceX - faceSize*15/78;
+            var leftEyeY = faceY - faceSize*11/78;
+            var rightEyeX = faceX + faceSize*15/78;
+            var rightEyeY = faceY - faceSize*11/78;
+            
+            var trunkX = faceX - faceSize*11/78;
+            var trunkY = faceY - faceSize*-14/78;
+            var trunkW = faceSize * 22/78;
+            var trunkH = faceSize * 68/78;
+           
+            stroke(89, 89, 89);
+          
+            fill(120, 120, 119);
+            ellipse(bodyX, bodyY, bodyW, bodyW); // body?
+            
+            ellipse(leftEarX,leftEarY,faceSize * 57/78,faceSize * 90/78);// leftEar
+            ellipse(rightEarX,rightEarY,faceSize * 57/78,faceSize * 90/78);//rightEar
+            
+            //face
+            ellipse(faceX, faceY, faceSize, faceSize); 
+            
+            //eyes
+            fill(0, 0, 0);
+            ellipse(leftEyeX, leftEyeY, faceSize * 15/78,faceSize * 15/78);
+            ellipse(rightEyeX, rightEyeY, faceSize * 15/78,faceSize * 15/78);
+            
+            fill(120, 120, 119);
+            //trunk
+            rect(trunkX,trunkY,trunkW,trunkH);
+        };
+        
+        
+        //clock
+        var clockSize = 147;
+        var clockCenterX = 200;
+        var clockCenterY = 250;
+        
+        var clock = function (clockCenterX, clockCenterY, clockSize){
+        
+        
+         
+         
+            
+            textSize(clockSize * 15/150);
+            
+            
+            //clock outline
+            fill(0, 0, 0);
+            ellipse(clockCenterX,clockCenterY, clockSize, clockSize);
+            fill(255, 255, 255);
+            ellipse(clockCenterX,clockCenterY,clockSize * 140/150,clockSize * 140/150);
+            
+            //clock hands
+            line(clockCenterX, clockCenterY,clockCenterX,clockCenterY- clockSize * 52/150);
+            line(clockCenterX, clockCenterY,clockCenterX + clockSize *28/150, clockCenterY);
+            
+            //numbers
+            fill(0, 0, 0);
+            //12 o'clock
+            text("12", clockCenterX - clockSize * 12/150, clockCenterY - clockSize * 53/150);
+            //1 o'clock
+            text("1", clockCenterX + clockSize * 19/150 ,clockCenterY - clockSize * 41/150 );
+            //2 o'clock
+            text("2",clockCenterX + clockSize * 41/150,clockCenterY - clockSize * 19/150);
+            //3 o'clock
+            text("3",clockCenterX + clockSize * 50/150, clockCenterY + clockSize * 7/150);
+            //4 o'clock
+            text("4",clockCenterX + clockSize * 40/150, clockCenterY + clockSize * 30/150);
+            //5 o'clock
+            text("5", clockCenterX + clockSize * 25/150, clockCenterY + clockSize * 50/150);
+            // 6 o'clock
+            text("6",clockCenterX , clockCenterY + clockSize * 58/150);
+            //7 o'clock
+            text("7",clockCenterX - clockSize * 26/150, clockCenterY + clockSize * 53/150);
+            //8 o'clock
+            text("8",clockCenterX - clockSize * 50/150,clockCenterY + clockSize * 32/150);
+            //9 o'clock
+            text("9",clockCenterX - clockSize * 57/150,clockCenterY + clockSize * 7/150);
+            //10 o'clock
+            text("10",clockCenterX - clockSize * 54/150, clockCenterY - clockSize * 19/150);
+            //11 o'clock
+            text("11",clockCenterX - clockSize * 34/150, clockCenterY - clockSize * 41/150);
+            
+        
+        };
+        
+        //8-Ball
+        fill(0, 0, 0);
+        ellipse(200, 200, 375, 375);
+        fill(60, 0, 255);
+        triangle(200, 104, 280, 280, 120, 280);
+        fill(255, 255, 255);
+        
+        var answer = floor(random(1, 6));
+         textSize(20);
+        
+        if (answer === 1) {
+            text("IT IS", 177, 200);
+            text("CERTAIN", 160, 245); 
+        }
+        else if (answer === 2 ) {
+            elephant(50, 200, 222);
+        }
+        else if (answer === 3 ) {
+            text("MOST",172,206);    
+            text("LIKELY",169,246);
+        
+        }
+        else if (answer === 4 ) {
+            textSize(15);
+            text("PROBABLY",158,225);
+            text("NOT",185,261);
+        }
+        else if (answer === 5 ) {
+            clock(200,213,75);
+        }
+        };
+        
+        
+        ball();
+        
+        mouseClicked = function() {
+            background(255, 255, 255);
+            ball();
+};
+
+
+
+     
+     }};
+     
+     
+     
+     
+     // Get the canvas that Processing-js will use
+    var canvas = document.getElementById("canvas-4"); 
+    // Pass the function sketchProc (defined in myCode.js) to Processing's constructor.
+    var processingInstance = new Processing(canvas, sketchProc);
+ </script>
+</html>
