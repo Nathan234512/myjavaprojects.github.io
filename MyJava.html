@@ -137,10 +137,9 @@ https://github.com/Team-Code/KA_Offline -->
         frameRate(30);
         
         // ProgramCodeGoesHere
-        var bodyX = 200;
-        var bodyY = 220;
-        var bodyW = 121;
-        var faceSize; 
+        
+        var faceSize;
+        var elephantC = color(random(1,225), random(1, 225), random(1, 225));
         background(191, 248, 255);
         
         var elephant = function(bodyW, bodyX , bodyY){
@@ -154,7 +153,7 @@ https://github.com/Team-Code/KA_Offline -->
             var rightEarX = faceX + faceSize*1/2;
             var rightEarY = faceY - faceSize*19/78;
             
-            var eyeSize = 17;
+            
             var leftEyeX = faceX - faceSize*15/78;
             var leftEyeY = faceY - faceSize*11/78;
             var rightEyeX = faceX + faceSize*15/78;
@@ -165,9 +164,9 @@ https://github.com/Team-Code/KA_Offline -->
             var trunkW = faceSize * 22/78;
             var trunkH = faceSize * 68/78;
            
-            stroke(89, 89, 89);
+            stroke(0,0,0);
           
-            fill(120, 120, 119);
+            fill(elephantC);
             ellipse(bodyX, bodyY, bodyW, bodyW); // body?
             
             ellipse(leftEarX,leftEarY,faceSize * 57/78,faceSize * 90/78);// leftEar
@@ -181,7 +180,7 @@ https://github.com/Team-Code/KA_Offline -->
             ellipse(leftEyeX, leftEyeY, faceSize * 15/78,faceSize * 15/78);
             ellipse(rightEyeX, rightEyeY, faceSize * 15/78,faceSize * 15/78);
             
-            fill(120, 120, 119);
+            fill(elephantC);
             //trunk
             rect(trunkX,trunkY,trunkW,trunkH);
         
@@ -195,7 +194,7 @@ https://github.com/Team-Code/KA_Offline -->
         mousePressed = function() { 
         
          elephant(random(50,150), mouseX, mouseY);
-        
+        elephantC = color(random(1,225), random(1, 225), random(1, 225));
         };
 
 
